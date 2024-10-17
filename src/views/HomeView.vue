@@ -1,9 +1,7 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue';
+import Orders from '@/modules/Orders/Orders.vue';
 </script>
 
-<template>
-	<main>
-		<TheWelcome />
-	</main>
+<template lang="pug">
+Orders
 </template>

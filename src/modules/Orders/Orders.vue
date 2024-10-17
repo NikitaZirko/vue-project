@@ -1,9 +1,11 @@
 <script setup>
-import {RouterView} from 'vue-router';
+
 </script>
 
 <template lang="pug">
-main
-    RouterView
+h1 hello
 </template>
 
+<style setup lang="scss">
+
+</style>
