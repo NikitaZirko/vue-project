@@ -82,17 +82,27 @@ const dateOrderStart = ref('2024-05-30');
 const dateOrderEnd = ref('2024-06-01');
 const statusOrder = ref();
 const filterLoading = ref(false);
+const getFormatDate = (date) => {
+    const dateFull = new Date(date);
+    const year = dateFull.getFullYear();
+    const month = ('0' + (dateFull.getMonth() + 1)).slice(-2);
+    const day = ('0' + (dateFull.getDate() + 1)).slice(-2);
+
+    return `${year}-${month}-${day}`
+}
 const filterOrders = () => {
     if (dateOrderStart.value != ordersOptions.dateFrom) {
-        ordersOptions.dateFrom = dateOrderStart.value;
+        ordersOptions.dateFrom = getFormatDate(dateOrderStart.value);
     }
 
     if (dateOrderEnd.value != ordersOptions.dateTo) {
-        ordersOptions.dateTo = dateOrderEnd.value;
+        ordersOptions.dateTo = getFormatDate(dateOrderEnd.value);
     }
 
     if (statusOrder.value != ordersOptions.orderStatus) {
-        ordersOptions.orderStatus = statusOrder.value.reduce((acc, el) => acc + el.code + ',', '');
+        if (statusOrder.value) {
+            ordersOptions.orderStatus = statusOrder.value.reduce((acc, el) => acc + el.code + ',', '');
+        }
     }
 }
 const statuses = ref([
