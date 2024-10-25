@@ -22,11 +22,10 @@ const onRowSelect = async (e) => openDialogOrder(e.data.id);
 const openDialogOrder = async (id) => {
     const { isFetching, error, data, isFinished } = await useGetOrder(id);
 
-    if (!data.value) return;
-
     dialog.open(Order, {
         data: {
-            order: data
+            order: data,
+            error,
         },
         props: {
             header: 'Данные по заказу',
@@ -174,6 +173,7 @@ const statuses = ref([
             :loading="filterLoading")
 
 DataTable.list-orders(
+    v-if="!error"
     resizableColumns
     stripedRows
     :value="data?.orders"
@@ -208,6 +208,9 @@ DataTable.list-orders(
 
     template(#empty)
         h5 Данных нет
+
+h5.err(v-else) Обратитесь в службу поддержки:
+    p {{ error }}
 
 DynamicDialog(data)
 </template>
@@ -260,6 +263,4 @@ DynamicDialog(data)
     background-color: #f1f5f9;
     color: #334155;
 }
-
-
 </style>

@@ -39,9 +39,9 @@ const useGetOrders = (query) => {
             if (ctx.response?.ok) {
                 ctx.error = false
             } else {
-                ctx.error = new Error('Error fetch orders')
+                ctx.error = new Error(ctx.response.status + ' ' + ctx.error);
             }
-            return ctx.data = []
+            return ctx
         }
     }).json();
 };
@@ -55,7 +55,7 @@ const useGetOrder = (id) => {
             if (ctx.response.ok) {
                 ctx.error = false
             } else {
-                ctx.error = new Error('Error fetch order')
+                ctx.error = new Error(ctx.response.status + ' ' + ctx.error);
             }
             return ctx
         }

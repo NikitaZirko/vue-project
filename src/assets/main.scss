@@ -3,6 +3,11 @@
 @use './base/mixins.scss';
 @use './base/typography.scss';
 
-
+.err {
+    text-align: center;
+    p {
+        color: red;
+    }
+}
 
 

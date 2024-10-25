@@ -35,6 +35,7 @@ const getClientFullName = (data) => {
 <template lang="pug">
 
 DataTable(
+    v-if="!dialogRef.data.error"
     resizableColumns
     :value="dataOrder")
 
@@ -60,6 +61,9 @@ DataTable(
         template(
             #body="slotProps"
             v-if="col.field === 'client.firstname'") {{ getClientFullName(dataOrder[0]) }}
+
+h5.err(v-else) Обратитесь в службу поддержки:
+    p {{ dialogRef.data.error }}
 
 </template>
 
